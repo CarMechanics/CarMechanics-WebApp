@@ -10,7 +10,7 @@ const LandingPage: React.FC = () => {
 
       <section className="car-section">
         <img
-          src="Masina1.png"
+          src="mecanic-photo.jpg"
           alt="Car"
           className="car-image"
         />
