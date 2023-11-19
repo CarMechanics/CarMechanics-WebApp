@@ -1,0 +1,70 @@
+import { Link } from 'react-router-dom';
+import CarList from './CarList';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'; 
+import '../LandingPage.css';
+const CarPage = () => {
+    const [cars, setCars] = useState<Array<Car>>([]);
+    interface Car {
+        Id: number;
+        Manufacturer: string;
+        Model: string;
+        Year: number;
+      }
+      
+      
+    useEffect(() => {
+        axios.get('https://localhost:7053/Car')
+        .then(response => {
+          // Assuming the response data is an array of cars
+          console.log(response.data);
+          const formattedCars = response.data.map((car: any) => ({
+            Id: car.id,
+            Manufacturer: car.brandInfo.manufacturer,
+            Model: car.brandInfo.model,
+            Year: car.yearOfManufacture,
+          }));
+          setCars(formattedCars);
+        })
+        .catch(error => {
+          console.error('Error fetching cars:', error);
+        });
+    }, []);
+
+    const onDelete = async (Id: number) => {
+      try {
+        console.log(Id);
+        const response = await fetch('https://localhost:7053/Car', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(Id),
+        });
+    
+        if (!response.ok) {
+          // Handle the error, e.g., show an error message or log the error.
+          console.error(`Error: ${response.status} - ${response.statusText}`);
+        } else {
+          // Successful submission, handle accordingly.
+          const updatedCars = cars.filter((car) => car.Id !== Id);
+        setCars(updatedCars);
+          console.log('Deletion successful');
+        }
+      } catch (error) {
+        // Handle network or other errors.
+        console.error('Error:', error);
+      }
+    }
+
+    return (
+      <div className='fullscreen' style={{ backgroundColor: "#222831", color: "#EEEEEE", position:'fixed', top:0 }}>
+      <Link to="/AddCar">
+          <button className='btn btn-primary my-5'>Add Car</button>
+      </Link>
+      <CarList cars={cars} onDelete={onDelete}/>
+  </div>
+    );
+};
+
+export default CarPage;
