@@ -14,7 +14,7 @@ const CarPage = () => {
       
       
     useEffect(() => {
-        axios.get('https://localhost:7053/Car')
+        axios.get('https://localhost:7053/Car', { params: { userEmail: window.sessionStorage.getItem('email')?.toString()}})
         .then(response => {
           // Assuming the response data is an array of cars
           console.log(response.data);
@@ -27,6 +27,7 @@ const CarPage = () => {
           setCars(formattedCars);
         })
         .catch(error => {
+          console.log(window.sessionStorage.getItem('email')?.toString());
           console.error('Error fetching cars:', error);
         });
     }, []);
