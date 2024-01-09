@@ -1,6 +1,7 @@
 import React from 'react';
 import './LandingPage.css';
 import { Link } from 'react-router-dom';
+import StarRating from './StarRating';
 
 const LandingPage: React.FC = () => {
   const email = window.sessionStorage.getItem("email");
@@ -29,12 +30,20 @@ const LandingPage: React.FC = () => {
         <header style={headerStyle}>
         
           <h1>Welcome to CarMechanics!</h1>
+          <div className="App">
+      <h1>Star Rating Example</h1>
+      <StarRating totalStars={5} />
+    </div>
+
           <div className="buttons-container" style={buttonsContainerStyle}>
             <Link to="/login" className='btn btn-primary'>
               <button style={{ backgroundColor:"#0d6efd", color: "white", border: "none" }}>Login</button>
             </Link>
             <button className="btn btn-primary">Register</button>
           </div>
+          <Link to="/reviews" className='btn btn-primary'>
+              <button style={{ backgroundColor:"#0d6efd", color: "white", border: "none" }}>Reviews</button>
+            </Link>
         </header>
         <footer style={{ position: 'fixed', bottom: 0, width: "100%" }}>
           <p>&copy; 2023 CarMechanics Center</p>

@@ -8,6 +8,8 @@ import UpdateCarPage from './Cars/UpdateCarPage';
 import AppointmentPage from './Appointments/AppointmentPage';
 import AddAppointmentPage from './Appointments/AddAppointmentPage';
 import UpdateAppointmentPage from './Appointments/UpdateAppointmentPage';
+import ReviewList from './Reviews/ReviewList';
+import Review from './Reviews/Review';
 
 function App() {
   return (
@@ -22,6 +24,16 @@ function App() {
           <Route path="/Appointments" element={<AppointmentPage/>}/>
           <Route path="/AddAppointment" element={<AddAppointmentPage/>}/>
           <Route path="/UpdateAppointment/:id" element={<UpdateAppointmentPage/>}/>
+          <Route path='/Reviews' element={<ReviewList reviews={[]} onUpdateReview={function (id: number): void {
+            throw new Error('Function not implemented.');
+          } } onDeleteReview={function (id: number): void {
+            throw new Error('Function not implemented.');
+          } }/>}/>
+          <Route path="/Review" element={<Review reviews={[]} onAddReview={function (review: Review): void {
+            throw new Error('Function not implemented.');
+          } } onUpdateReview={function (id: number, updatedReview: Review): void {
+            throw new Error('Function not implemented.');
+          } }/>}/>
         </Routes>
       </BrowserRouter>
     </div>
