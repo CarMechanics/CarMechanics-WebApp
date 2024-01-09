@@ -16,13 +16,13 @@ const LandingPage: React.FC = () => {
 
   const buttonsContainerStyle: React.CSSProperties = {
     display: 'flex',
-    flexDirection: 'row', // Align buttons horizontally
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    gap: '10px', // Add some space between buttons
+    gap: '10px', 
   };
 
-  console.log(email);
+
   if (email === null)
     return (
       <div className="landing-page">
@@ -50,6 +50,9 @@ const LandingPage: React.FC = () => {
         <div className="buttons-container" style={buttonsContainerStyle}>
         <Link to="/Cars">
             <button className='btn btn-primary'>Cars</button>
+          </Link>
+          <Link to="/Appointments">
+            <button className='btn btn-primary'>Appointments</button>
           </Link>
         </div>
       </header>
