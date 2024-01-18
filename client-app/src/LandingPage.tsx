@@ -13,7 +13,19 @@ const LandingPage: React.FC = () => {
     alignItems: 'center',
     justifyContent: 'center',
     height: '100vh',
+    backgroundImage: `url(${process.env.PUBLIC_URL}/cara.jpg)`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundAttachment: 'fixed',
+    color: "#EEEEEE",
   };
+  const h1Style: React.CSSProperties = {
+    fontSize: '5em', // Adjust the font size as needed
+    letterSpacing: '8px', // Add letter-spacing for better visibility
+    marginBottom: '20px', // Add margin to the bottom for spacing
+    color:'#008080'
+  };
+  
 
   const buttonsContainerStyle: React.CSSProperties = {
     display: 'flex',
@@ -29,7 +41,7 @@ const LandingPage: React.FC = () => {
       <div className="landing-page">
         <header style={headerStyle}>
         
-          <h1>Welcome to CarMechanics!</h1>
+          <h1 style={h1Style}>Welcome to CarMechanics!</h1>
           <div className="App">
       <h1>Star Rating Example</h1>
       <StarRating totalStars={5} />
