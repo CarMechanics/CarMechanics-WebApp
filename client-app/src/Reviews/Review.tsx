@@ -31,9 +31,21 @@ const Review: React.FC<ReviewPageProps> = ({ reviews, onAddReview, onUpdateRevie
     onAddReview(newReviewWithId);
     setNewReview({ Id: 0, Rating: 0, Comment: '' });
   };
+  const containerStyle: React.CSSProperties = {
+    backgroundImage: `url('/mas.jpg')`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundAttachment: 'fixed',
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#EEEEEE', // Adaugă culoarea textului pentru a se potrivi cu fundalul
+  };
 
   return (
-    <div>
+    <div  style={containerStyle}>
       <h1>Review Page</h1>
       <div>
         <h2>Add a Review</h2>
