@@ -54,6 +54,7 @@ const LoginPage: React.FC = () => {
             <button
               type="button"
               className="btn btn-primary"
+              style={{ backgroundColor: "green", color: "white", border:'none' }}
               onClick={handleLogin}
             >
               Login
@@ -61,6 +62,7 @@ const LoginPage: React.FC = () => {
             <button
               type="button"
               className="btn btn-secondary"
+              style={{ backgroundColor: "#8A2BE2", color: "white", border:'none' }}
               onClick={() => window.location.href = "/"}
             >
               Cancel

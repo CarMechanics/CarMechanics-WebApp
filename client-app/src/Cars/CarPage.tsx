@@ -3,6 +3,8 @@ import CarList from './CarList';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'; 
 import '../LandingPage.css';
+
+
 const CarPage = () => {
     const [cars, setCars] = useState<Array<Car>>([]);
     interface Car {
@@ -59,7 +61,16 @@ const CarPage = () => {
     }
 
     return (
-      <div className='fullscreen' style={{ backgroundColor: "#222831", color: "#EEEEEE", position:'fixed', top:0 }}>
+      <div
+      className='fullscreen'
+      style={{
+        backgroundImage: `url(/cas.png)`,
+        backgroundSize: 'cover',
+        color: '#EEEEEE',
+        position: 'fixed',
+        top: 0,
+      }}
+    >
       <Link to="/AddCar">
           <button className='btn btn-primary my-5'>Add Car</button>
       </Link>
