@@ -10,6 +10,7 @@ import AddAppointmentPage from './Appointments/AddAppointmentPage';
 import UpdateAppointmentPage from './Appointments/UpdateAppointmentPage';
 import ReviewList from './Reviews/ReviewList';
 import Review from './Reviews/Review';
+import RegisterPage from './Auth/RegisterPage';
 
 function App() {
   
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<LandingPage/>}/>
           <Route path="AddCar" element={<AddCarPage />}/>
           <Route path="/Login" element={<LoginPage />}/>
+          <Route path="/Register" element={<RegisterPage />}/>
           <Route path="/Cars" element={<CarsPage/>}/>
           <Route path="/UpdateCar/:id" element={<UpdateCarPage/>}/>
           <Route path="/Appointments" element={<AppointmentPage/>}/>

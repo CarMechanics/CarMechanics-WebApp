@@ -55,7 +55,9 @@ const LandingPage: React.FC = () => {
             <Link to="/login" className='btn btn-primary'>
               <button style={{ backgroundColor:"#0d6efd", color: "white", border: "none" }}>Login</button>
             </Link>
-            <button className="btn btn-primary">Register</button>
+            <Link to="/register" className='btn btn-primary'>
+              <button style={{ backgroundColor:"#0d6efd", color: "white", border: "none" }}>Register</button>
+            </Link>
           </div>
           <Link to="/reviews" className='btn btn-primary'>
               <button style={{ backgroundColor:"#0d6efd", color: "white", border: "none" }}>Reviews</button>
