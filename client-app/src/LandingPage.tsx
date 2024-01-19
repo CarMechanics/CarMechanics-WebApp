@@ -8,6 +8,7 @@ const LandingPage: React.FC = () => {
   console.log(email);
 
   const headerStyle: React.CSSProperties = {
+    
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -39,6 +40,9 @@ const LandingPage: React.FC = () => {
   if (email === null)
     return (
       <div className="landing-page">
+        <p style={{ fontStyle: 'italic', fontSize: '1.2em', color: '#008080' }}>
+          "Your trusted partner in automotive care and service."
+        </p>
         <header style={headerStyle}>
         
           <h1 style={h1Style}>Welcome to CarMechanics!</h1>
