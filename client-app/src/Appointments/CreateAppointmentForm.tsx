@@ -14,6 +14,7 @@ interface FormData {
   carId: string;
   date: string;
   description: string;
+  serviceId: string;
 }
 
 const CreateAppointmentForm: React.FC<AppointmentFormProps> = ({ onSubmit, initialData = {} }) => {
@@ -22,23 +23,33 @@ const CreateAppointmentForm: React.FC<AppointmentFormProps> = ({ onSubmit, initi
     carId: initialData.carId || '',
     date: initialData.date?.toString() || '',
     description: initialData.description || '',
+    serviceId: initialData.serviceId || ''
   });
 
   const [cars, setCars] = useState<Array<any>>([]);
+  const [services, setServices] = useState<Array<any>>([]);
 
   useEffect(() => {
-    // Fetch all cars when the component mounts
+    // Fetch all cars
     axios
       .get('https://localhost:7053/Car', {
         params: { userEmail: window.sessionStorage.getItem('email')?.toString() },
       })
       .then((response) => {
-        // Assuming the response data is an array of cars
-        console.log(response.data);
         setCars(response.data);
       })
       .catch((error) => {
         console.error('Error fetching cars:', error);
+      });
+
+    // Fetch all services
+    axios
+      .get('https://localhost:7053/Service') // Adjust the URL to match your services endpoint
+      .then((response) => {
+        setServices(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching services:', error);
       });
   }, []);
 
@@ -60,7 +71,7 @@ const CreateAppointmentForm: React.FC<AppointmentFormProps> = ({ onSubmit, initi
       <div className="card p-5" style={{ maxWidth: '600px', width: "500px", backgroundColor: "#393E46", color: "#EEEEEE" }}>
         <h2 className="mb-4">Appointment Form</h2>
         <form onSubmit={handleSubmit}>
-        <div className="mb-3">
+          <div className="mb-3">
             <label htmlFor="carId" className="form-label">
               Car:
             </label>
@@ -80,7 +91,25 @@ const CreateAppointmentForm: React.FC<AppointmentFormProps> = ({ onSubmit, initi
               ))}
             </select>
           </div>
-
+          <div className="mb-3">
+            <label htmlFor="serviceId" className="form-label">
+              Service:
+            </label>
+            <select
+              id="serviceId"
+              className="form-control"
+              name="serviceId"
+              value={formData.serviceId}
+              onChange={handleInputChange}
+            >
+              <option value="">Select Service</option>
+              {services.map((service) => (
+                <option key={service.id} value={service.id}>
+                  {service.name}
+                </option>
+              ))}
+            </select>
+          </div>
           <div className="mb-3">
             <label htmlFor="date" className="form-label">
               Date:

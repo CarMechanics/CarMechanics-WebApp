@@ -7,7 +7,7 @@ const AddAppointmentPage: React.FC = () => {
   const onSubmit = async (formData: any) => {
     try {
       const response = await axios.post('https://localhost:7053/Appointment', {
-        userEmail:  window.sessionStorage.getItem('email')?.toString(),
+        userEmail: window.sessionStorage.getItem('email')?.toString(),
         carId: formData.carId,
         date: formData.date,
         description: formData.description

@@ -23,6 +23,12 @@ interface Car {
 const AppointmentList: React.FC<AppointmentListProps> = ({ appointments, onUpdate, onDelete }) => {
     const [cars, setCars] = useState<Record<string, Car>>({});
 
+    const isPastAppointment = (appointmentDateStr: string) => {
+        const today = new Date();
+        const appointmentDate = new Date(appointmentDateStr);
+        return appointmentDate.getTime() <= today.getTime();
+    };
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -37,7 +43,7 @@ const AppointmentList: React.FC<AppointmentListProps> = ({ appointments, onUpdat
 
                 setCars(carData);
                 console.log(cars);
-                setTimeout(function() {
+                setTimeout(function () {
 
                 }, 500);
             } catch (error) {
@@ -60,31 +66,38 @@ const AppointmentList: React.FC<AppointmentListProps> = ({ appointments, onUpdat
                         <th style={{ backgroundColor: "#222831", color: "white" }}>Car</th>
                         <th style={{ backgroundColor: "#222831", color: "white" }}>Date</th>
                         <th style={{ backgroundColor: "#222831", color: "white" }}>Labour description</th>
+                        <th style={{ backgroundColor: "#222831", color: "white" }}>Price</th>
                         <th style={{ backgroundColor: "#222831", color: "white" }}>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {appointments.map((appointment) => {
-                         const car = cars[appointment.carId];
-                         debugger;
+                        const car = cars[appointment.carId];
+                        debugger;
                         return (
-                        <tr key={`${appointment.userEmail}-${appointment.carId}`}>
-                            <td style={{ backgroundColor: "#222831", color: "white" }}>{`${car?.brandInfo?.manufacturer}, ${car?.brandInfo?.model}, ${car?.yearOfManufacture}`}</td>
-                            <td style={{ backgroundColor: "#222831", color: "white" }}>{new Date(appointment.date).toLocaleDateString()}</td>
-                            <td style={{ backgroundColor: "#222831", color: "white" }}>{appointment.labours[0].description}</td>
-                            <td style={{ backgroundColor: "#222831", color: "white" }}>
-                            <Link to={`/UpdateAppointment/${appointment.id}`}>
-                                <button className="btn btn-primary mx-4" onClick={() => onUpdate(appointment.id)}>
-                                    Update
-                                </button>
-                            </Link>
-                                <button className="btn btn-primary" onClick={() => onDelete(appointment.userEmail, appointment.carId, appointment.id)}>
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
+                            <tr key={`${appointment.userEmail}-${appointment.carId}`}>
+                                <td style={{ backgroundColor: "#222831", color: "white" }}>{`${car?.brandInfo?.manufacturer}, ${car?.brandInfo?.model}, ${car?.yearOfManufacture}`}</td>
+                                <td style={{ backgroundColor: "#222831", color: "white" }}>{new Date(appointment.date).toLocaleDateString()}</td>
+                                <td style={{ backgroundColor: "#222831", color: "white" }}>{appointment.labours[0].description}</td>
+                                <td style={{ backgroundColor: "#222831", color: "white" }}>{appointment.labours[0].price}</td>
+                                <td style={{ backgroundColor: "#222831", color: "white" }}>
+                                    <Link to={`/UpdateAppointment/${appointment.id}`}>
+                                        <button className="btn btn-primary mx-4" onClick={() => onUpdate(appointment.id)}>
+                                            Update
+                                        </button>
+                                    </Link>
+                                    <button className="btn btn-primary" onClick={() => onDelete(appointment.userEmail, appointment.carId, appointment.id)}>
+                                        Delete
+                                    </button>
+                                    {isPastAppointment(appointment.date) && (
+                                        <button className="btn btn-primary mx-4" onClick={() => onUpdate(appointment.id)}>
+                                            Send review
+                                        </button>
+                                    )}
+                                </td>
+                            </tr>
                         );
-                        })}
+                    })}
                 </tbody>
             </table>
         </div>
