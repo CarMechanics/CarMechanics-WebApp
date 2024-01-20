@@ -6,7 +6,7 @@ import axios from 'axios';
 const RegisterPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+
 
   const handleRegister = async () => {
     try {
@@ -15,10 +15,10 @@ const RegisterPage: React.FC = () => {
         password: password,
       });
       console.log('Registration successful', response.data);
-     
+
       window.location.href = "/";
     } catch (error) {
-      
+
       console.error('Registration error', error);
     }
   };

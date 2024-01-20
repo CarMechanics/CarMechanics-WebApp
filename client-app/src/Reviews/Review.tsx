@@ -45,7 +45,7 @@ const Review: React.FC<ReviewPageProps> = ({ reviews, onAddReview, onUpdateRevie
   };
 
   return (
-    <div  style={containerStyle}>
+    <div style={containerStyle}>
       <h1>Review Page</h1>
       <div>
         <h2>Add a Review</h2>

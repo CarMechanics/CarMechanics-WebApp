@@ -89,11 +89,11 @@ const AppointmentList: React.FC<AppointmentListProps> = ({ appointments, onUpdat
                                     <button className="btn btn-primary" onClick={() => onDelete(appointment.userEmail, appointment.carId, appointment.id)}>
                                         Delete
                                     </button>
-                                    {isPastAppointment(appointment.date) && (
-                                        <button className="btn btn-primary mx-4" onClick={() => onUpdate(appointment.id)}>
-                                            Send review
+                                    <Link to={`/QRCode/${appointment.id}`} className="mx-4">
+                                        <button className="btn btn-primary">
+                                            Generate QR Code
                                         </button>
-                                    )}
+                                    </Link>
                                 </td>
                             </tr>
                         );

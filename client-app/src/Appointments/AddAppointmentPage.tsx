@@ -10,7 +10,8 @@ const AddAppointmentPage: React.FC = () => {
         userEmail: window.sessionStorage.getItem('email')?.toString(),
         carId: formData.carId,
         date: formData.date,
-        description: formData.description
+        description: formData.description,
+        serviceId: parseInt(formData.serviceId)
       });
       window.location.href = "/Appointments";
     } catch (error) {

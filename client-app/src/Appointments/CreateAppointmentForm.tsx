@@ -42,9 +42,8 @@ const CreateAppointmentForm: React.FC<AppointmentFormProps> = ({ onSubmit, initi
         console.error('Error fetching cars:', error);
       });
 
-    // Fetch all services
     axios
-      .get('https://localhost:7053/Service') // Adjust the URL to match your services endpoint
+      .get('https://localhost:7053/Service')
       .then((response) => {
         setServices(response.data);
       })
@@ -54,6 +53,7 @@ const CreateAppointmentForm: React.FC<AppointmentFormProps> = ({ onSubmit, initi
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    debugger;
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,

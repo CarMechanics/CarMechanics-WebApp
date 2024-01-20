@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import AppointmentList from './AppointmentList';
+import Navbar from '../Navbar';
+import { Nav } from 'react-bootstrap';
 
 const AppointmentPage: React.FC = () => {
   const [appointments, setAppointments] = useState<Array<Appointment>>([]);
@@ -36,9 +38,9 @@ const AppointmentPage: React.FC = () => {
     // Your update logic goes here
   };
 
-  const onDelete = async (userEmail: string, carId: string, appointmentId : any) => {
+  const onDelete = async (userEmail: string, carId: string, appointmentId: any) => {
     try {
-        console.log(JSON.stringify({ appointmentId }));
+      console.log(JSON.stringify({ appointmentId }));
       const response = await fetch('https://localhost:7053/Appointment', {
         method: 'DELETE',
         headers: {
@@ -63,12 +65,15 @@ const AppointmentPage: React.FC = () => {
   };
 
   return (
-    <div className="fullscreen" style={{ backgroundColor: '#222831', color: '#EEEEEE', position: 'fixed', top: 0 }}>
-      <Link to="/AddAppointment">
-        <button className="btn btn-primary my-5">Add Appointment</button>
-      </Link>
-      <AppointmentList appointments={appointments} onUpdate={onUpdate} onDelete={onDelete} />
-    </div>
+    <>
+      <div className="fullscreen" style={{ backgroundColor: '#222831', color: '#EEEEEE', position: 'fixed', top: 0 }}>
+        <Navbar />
+        <Link to="/AddAppointment">
+          <button className="btn btn-primary my-5">Add Appointment</button>
+        </Link>
+        <AppointmentList appointments={appointments} onUpdate={onUpdate} onDelete={onDelete} />
+      </div>
+    </>
   );
 };
 
